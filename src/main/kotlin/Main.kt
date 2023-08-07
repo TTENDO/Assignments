@@ -1,29 +1,43 @@
-/** Write a function that has three parameters ie 2 doubles and a character
- * (*+-/) if * multiply, + add, - subtract, / divide **/
-fun main() {
-    println("Enter first double number");
-    val a = readln()
-    println("Enter second double number");
-    val b = readln()
-    println("Enter one of these characters + * / -");
-    val c = readln()
-    val result = calculateWhatsProvided(a.toDouble(),b.toDouble(),c.trim().single())
-    println("The result of $a $c $b is $result")
-}
-fun calculateWhatsProvided(a:Double,b:Double,c:Char):Double{
-    var enteredChar = c.toString()
-    var result : Double =  0.0
 
-    if(enteredChar == "-"){
-        result = a-b
-    } else if(enteredChar == "+"){
-        result = a+b
+fun main() {
+    //ARRAYS
+    //Non primitive array
+    val firstArray = arrayOf("Kenya","Uganda",8,true)
+
+    //primitive array
+    val s = Array<Int>(5,{0})
+    val secondArray = IntArray(5,{0})
+
+    //assigning values in my array
+    secondArray[0] = 9
+    secondArray[1] = 10
+    secondArray[2] = 9
+    secondArray[3] = 9
+    secondArray[4] = 9
+
+    //loop through an array
+    for(item in secondArray){
+        println(item)
     }
-    else if(enteredChar == "*"){
-        result = a*b
+
+    val k = Array<Char>(5,{'D'})
+    //variations of loops ie for loop, //foreach loop
+    k[0] = 't'
+    for (i in k) {
+        println(i)
     }
-    else if(enteredChar == "/"){
-        result = a/b
+
+    k.forEach {
+        print(it)
     }
-    return result
+
+    //for loop incrementing by 2
+
+    for(i in 0 .. 10 step 2){
+        print(i)
+    }
+
+    for(i in 10 downTo 0 ){
+        println(i)
+    }
 }
