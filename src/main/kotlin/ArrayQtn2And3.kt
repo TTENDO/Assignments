@@ -6,38 +6,49 @@ fun main() {
     var groupA = listOf("a", "b", "c", "d", "e", "a", "g", "r", "f")
     var groupB = listOf("ant", "bee", "elephant", "dog", "cat")
 
-    var uniqueGroupA = groupA.toSet().toList()
-    var sortedGroupB = groupB.sorted().toList()
+    val charMap = mutableMapOf<Char, String?>()
 
-    val linkedMap = mutableMapOf<String, String>()
-
-    for (i in 0..uniqueGroupA.size) {
-        if (i < sortedGroupB.size) {
-            linkedMap[uniqueGroupA[i]] = sortedGroupB[i]
+    // map from group A
+    groupA.forEach { element ->
+        val firstChar = element.firstOrNull()
+        if (firstChar != null) {
+            charMap[firstChar] = element
         }
-//        else {
-//            linkedMap[groupA[i]] = ""
-//        }
     }
 
-    println("First Linked Map:")
-    linkedMap.forEach { (key, value) ->
-        println("$key -> $value")
+    // map from group B
+    groupB.forEach { element ->
+        val firstChar = element.firstOrNull()
+        if (firstChar != null) {
+            if (charMap.containsKey(firstChar)) {
+                charMap[firstChar] = "$element"
+            }
+        }
     }
+
+    charMap.forEach { (t, u) ->
+        if(u.toString().length < 2){
+            charMap[t] = "no corresponding animal!"
+        }
+    }
+
+    println("First map:")
+    charMap.forEach { (char, elements) ->
+        println("$char -> $elements")
+    }
+
     /**
      * 3.After implementing qtn 2, add five entries that map 5 unique characters to the respective animal name
      **/
-    val newChars = listOf("u", "v", "w", "x", "y")
-    for (i in 0..sortedGroupB.size) {
-        if (i < newChars.size) {
-            linkedMap[sortedGroupB[i]] = newChars[i]
-        }
-    }
+    val newChars = listOf('u', 'v', 'w', 'x', 'y')
 
-    println("Second Linked Map:")
-    linkedMap.forEach { (key, value) ->
-        println("$key -> $value")
-    }
+    val combinedList = newChars.zip(groupB)
 
+    charMap.putAll(combinedList)
+
+    println("Second map:")
+    charMap.forEach { (char, elements) ->
+        println("$char -> $elements")
+    }
 }
 
