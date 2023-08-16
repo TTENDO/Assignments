@@ -1,25 +1,68 @@
-/***
- *1.Create an Array of 50 integers and use a forloop to print out the names of those integers
+/****
+ *1.Create a class Color having attributes name, symbol and hex code
+ * and a function that returns the three attributes as a string
 */
-fun main(args: Array<String>) {
-    val integers = arrayOf(
-        0,1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
-        11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-        21, 22, 23, 24, 25, 26, 27, 28, 29, 30,
-        31, 32, 33, 34, 35, 36, 37, 38, 39, 40,
-        41, 42, 43, 44, 45, 46, 47, 48, 49
-    )
+open class Color{
+    var name: String = ""
+    var symbol: String = ""
+    var hexCode: String = ""
 
-    val names = arrayOf(
-        "Zero","One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten",
-        "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen", "Twenty",
-        "Twenty-One", "Twenty-Two", "Twenty-Three", "Twenty-Four", "Twenty-Five", "Twenty-Six", "Twenty-Seven", "Twenty-Eight", "Twenty-Nine", "Thirty",
-        "Thirty-One", "Thirty-Two", "Thirty-Three", "Thirty-Four", "Thirty-Five", "Thirty-Six", "Thirty-Seven", "Thirty-Eight", "Thirty-Nine", "Forty",
-        "Forty-One", "Forty-Two", "Forty-Three", "Forty-Four", "Forty-Five", "Forty-Six", "Forty-Seven", "Forty-Eight", "Forty-Nine"
-    )
-
-    for (i in integers) {
-        println("${integers[i]} => ${names[i]}")
+    open fun getColorInfo(): String {
+        return "Name => $name, Symbol => $symbol, Hex Code => $hexCode"
     }
+}
+/***
+ *2.Create a class Rainbow that inherits from Color
+ * and modifies the function in class Color to return all the colors of a rainbow and prints the output
+ */
+class Rainbow : Color() {
+    private val rainbowColors = listOf(
+        Color().apply {
+            name = "Red"
+            symbol = name.first().toString().uppercase()
+            hexCode = "#FF0000"
+        },
+        Color().apply {
+            name = "Orange"
+            symbol = name.first().toString().uppercase()
+            hexCode = "#FFA500"
+        },
+        Color().apply {
+            name = "Yellow"
+            symbol = name.first().toString().uppercase()
+            hexCode = "#FFFF00"
+        },
+        Color().apply {
+            name = "Green"
+            symbol = name.first().toString().uppercase()
+            hexCode = "#008000"
+        },
+        Color().apply {
+            name = "Blue"
+            symbol = name.first().toString().uppercase()
+            hexCode = "#0000FF"
+        },
+        Color().apply {
+            name = "Indigo"
+            symbol = name.first().toString().uppercase()
+            hexCode = "#4B0082"
+        },
+        Color().apply {
+            name = "Violet"
+            symbol = name.first().toString().uppercase()
+            hexCode = "#EE82EE"
+        }
+    )
+
+    override fun getColorInfo(): String {
+        val rainbowInfo = rainbowColors.joinToString("\n") { it.getColorInfo() }
+        return rainbowInfo
+    }
+}
+
+fun main() {
+    val rainbow = Rainbow()
+    val rainbowColorsInfo = rainbow.getColorInfo()
+    println("Rainbow Colors:\n$rainbowColorsInfo")
 }
 
